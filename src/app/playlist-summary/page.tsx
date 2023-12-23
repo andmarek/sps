@@ -1,8 +1,17 @@
 "use client";
 
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+//import { Button } from "@/components/ui/button";
 import { ReloadIcon } from "@radix-ui/react-icons";
+import {
+  Container,
+  Flex,
+  Heading,
+  Text,
+  Button,
+  TextField,
+  Blockquote,
+} from "@radix-ui/themes";
 
 import { useState } from "react";
 
@@ -12,8 +21,7 @@ export default function PlaylistSummary() {
     e.preventDefault();
 
     try {
-      console.log(playlistId)
-      console.log("wsss");
+      console.log(playlistId);
       const response = await fetch("/api/playlist-summary", {
         method: "POST",
         body: JSON.stringify({ playlistId: playlistId }),
@@ -44,32 +52,47 @@ export default function PlaylistSummary() {
   const [summary, setSummary] = useState("");
   const [summaryReady, setSummaryReady] = useState(false);
   return (
-    <div className="flex justify-center items-center flex-col">
-      <div>
-        <form
-          className="my-5"
-          onSubmit={(e) => {
-            submitForm(e);
-          }}
-        >
-          <h1 className="scroll-m-20 text-2xl font-semibold tracking-tight"> Put your playlist here: </h1>
-          <Input onChange={(e) => setPlaylistId(e.target.value)} />
-          {isLoading ? (
-            <Button disabled>
-              <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
-              Please wait
-            </Button>
-          ) : (
-            <Button type="submit" variant="outline">Button</Button>
-          )}
-        </form>
-      </div>
-      <div className="flex justify-center w-1/2">
-        <p className="leading-7 [&:not(:first-child)]:mt-6">
-          {" "}
-          {summary != "" && summary}{" "}
-        </p>
-      </div>
-    </div>
+    <main className="">
+      <Container size="2">
+        <Flex direction="column">
+          <Heading color="green"> Spotify Playlist Summarizer </Heading>
+          <Text> Enter a playlist and get an AI-generated summary </Text>
+          <Flex direction="column">
+            <form
+              className="my-5"
+              onSubmit={(e) => {
+                submitForm(e);
+              }}
+            >
+              <h1 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                {" "}
+                Enter the playlist URL:{" "}
+              </h1>
+              <Flex gap="2" direction="column">
+                <TextField.Root>
+                  <TextField.Input
+                    onChange={(e) => setPlaylistId(e.target.value)}
+                    placeholder="Enter a playlist URL"
+                  ></TextField.Input>
+                </TextField.Root>
+                <Container>
+                  {isLoading ? (
+                    <Button disabled>
+                      <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />
+                      Please wait
+                    </Button>
+                  ) : (
+                    <Button type="submit" variant="outline">
+                      Generate
+                    </Button>
+                  )}
+                </Container>
+              </Flex>
+            </form>
+          </Flex>
+          <Text as="p"> {summary != "" && summary} </Text>
+        </Flex>
+      </Container>
+    </main>
   );
 }
