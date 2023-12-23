@@ -53,8 +53,8 @@ export default function PlaylistSummary() {
     <main className="">
       <Container size="2">
         <Flex direction="column">
-          <Heading color="green"> Spotify Playlist Summarizer </Heading>
-          <Text> Enter a playlist and get an AI-generated summary </Text>
+          <Heading color="green"> Roast My Music </Heading>
+          <Text> Enter a playlist and get an AI-generated summary about yourself based on the songs </Text>
           <Flex direction="column">
             <form
               className="my-5"
