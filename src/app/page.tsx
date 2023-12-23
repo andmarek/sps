@@ -13,10 +13,10 @@ import {
   Blockquote,
 } from "@radix-ui/themes";
 
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 
 export default function PlaylistSummary() {
-  async function submitForm(e) {
+  async function submitForm(e: FormEvent<HTMLFormElement>) {
     setIsLoading(true);
     e.preventDefault();
 
