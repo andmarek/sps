@@ -6,7 +6,17 @@ const openai = new OpenAI({
 });
 
 const prompt =
-  "If I am going to give you a list of songs from a playlist and I need you to make claims about my personality in a playfully mean-spirited way.  Please be very frank, and funny; I like tongue-in-cheek and clever humor.  Don't worry about insulting me a little bit, I can take it.  Please DO NOT MAKE A LIST OF INDIVIDUAL SONGS AND WHAT THEY SAY ABOUT ME. I just want a SUCCINCT paragraph, a take about me and who I am based on them.  Also please be INSULTING.  Not vulgar, just playfully insulting.  I will post the songs and their artists as a JSON like this: {title: 'Song title', artists: ['artist1', 'artist2']}.  PLEASE BE MEAN.";
+  `If I am going to give you a list of songs from a playlist and I need you to make claims about my personality in a playfully mean-spirited way.  
+  Please be very frank, and funny; I like tongue-in-cheek and clever humor.  
+  Please be very insulting.  
+  Please DO NOT MAKE A LIST OF INDIVIDUAL SONGS AND WHAT THEY SAY ABOUT ME. 
+  I just want a SUCCINCT paragraph, a take about me and who I am based on them.  
+  Also please be INSULTING.  Not vulgar, just playfully insulting.  
+  I will post the songs and their artists as a JSON like this: 
+  {title: 'Song title', artists: ['artist1', 'artist2']}.  
+  Feel free to include cultural references and try to be original in the insults.
+  Also you should be very out-of-pocket, almost startlingly so.
+  PLEASE BE MEAN.  MAKE IT ONLY A FEW SENTENCES. SHOW PERSONALITY, BE FUNNY.`;
 
 const fetchPlaylist = async (playlistId: string) => {
   try {
